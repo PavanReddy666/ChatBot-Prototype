@@ -12,20 +12,27 @@ Experience the live web application here:
 
 ## 🛠️ Tech Stack & Required Technologies
 
-### 🎨 Frontend
-- **HTML5**: Semantic web architecture & template layout.
-- **CSS3**: Custom design system (Warm Beige `#FAF6F0`, Soft Light Pink `#F8D7DA`, Rich Black `#111111` typography).
-- **JavaScript (ES6+)**: SPA logic, model switching state, copy-to-clipboard code blocks, and dynamic UI popovers.
-- **Marked.js**: Markdown parsing for AI responses.
-- **Highlight.js**: Code syntax highlighting.
-- **FontAwesome 6**: Vector UI icons.
-- **Google Fonts**: *Outfit* & *Plus Jakarta Sans*.
+### 🎨 Frontend Architecture
 
-### ⚙️ Backend
-- **Python 3**: Server logic & API endpoints.
-- **Flask**: Lightweight Python web framework (`Flask>=3.0.0`).
-- **Google Generative AI SDK**: `google-generativeai` package for multi-turn Gemini API interaction.
-- **Python Dotenv**: `python-dotenv` for secure environment variable isolation.
+| Symbol | Technology | Description |
+| :---: | :--- | :--- |
+| 🌐 | **HTML5** | Semantic layout & single-page application structure. |
+| 🎨 | **CSS3 (Vanilla)** | Custom responsive design system featuring Warm Beige (`#FAF6F0`), Soft Light Pink (`#F8D7DA`), & Rich Black (`#111111`) typography. |
+| ⚡ | **JavaScript (ES6+)** | Dynamic UI engine handling async API requests, model popovers, & copy-to-clipboard code blocks. |
+| 📝 | **Marked.js** | Markdown parsing library rendering rich text, lists, and formatted code blocks in AI responses. |
+| 🖍️ | **Highlight.js** | Multi-language syntax highlighting for code snippets inside assistant response blocks. |
+| 🔤 | **Google Fonts** | Typography styled with modern *Outfit* and *Plus Jakarta Sans* font families. |
+| 💎 | **FontAwesome 6** | Clean vector icons for UI navigation and floating action menus. |
+
+### ⚙️ Backend Architecture
+
+| Symbol | Technology | Description |
+| :---: | :--- | :--- |
+| 🐍 | **Python 3** | Core application logic, routing, and environment management. |
+| 🌶️ | **Flask** | Lightweight WSGI web framework (`Flask>=3.0.0`) handling REST API routes and template serving. |
+| 🤖 | **Google Generative AI SDK** | Multi-turn AI integration via `google-generativeai` supporting Gemini 3.6 Flash & 3.5 Flash models. |
+| 🔐 | **Python Dotenv** | Security library (`python-dotenv`) isolating environment variables in local `.env` files. |
+| 📐 | **Vercel Serverless** | Serverless function deployment using `@vercel/python` builder (`vercel.json`). |
 
 ---
 
@@ -79,6 +86,7 @@ Open your browser and navigate to **[http://127.0.0.1:5000](http://127.0.0.1:500
 ├── app.py              # Flask server & Gemini API integration
 ├── .env.example        # Environment variable template
 ├── .gitignore          # Excludes secret files (.env)
+├── vercel.json         # Vercel deployment configuration
 ├── requirements.txt    # Python dependencies
 ├── static/
 │   ├── favicon.svg     # Dark black & warm beige SVG logo
