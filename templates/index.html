@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini AI - Personal Assistant</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Highlight.js for Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+    <!-- Dark Black & Warm Beige Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.svg') }}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="app-layout" id="appLayout">
+
+        <!-- COLLAPSIBLE GEMINI SIDEBAR -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-top">
+                <button class="icon-btn sidebar-toggle-btn" id="sidebarToggleBtn" title="Collapse sidebar">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="brand-title">
+                    <i class="fa-solid fa-sparkles"></i>
+                    <span>Gemini</span>
+                    <span class="api-status-badge">
+                        <span class="status-dot" id="statusDot"></span>
+                        <span id="statusText">API Key Active</span>
+                    </span>
+                </div>
+            </div>
+
+            <button class="new-chat-btn" id="newChatBtn">
+                <i class="fa-solid fa-plus"></i>
+                <span class="btn-label">New chat</span>
+            </button>
+
+            <!-- CAPABILITIES SECTION -->
+            <div class="sidebar-scroll">
+                <div class="sidebar-section-header">Capabilities</div>
+                <div class="category-menu">
+                    <button class="category-item" data-category="learning">
+                        <div class="cat-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <span class="cat-label">Learning</span>
+                    </button>
+                    <button class="category-item" data-category="coding">
+                        <div class="cat-icon"><i class="fa-solid fa-code"></i></div>
+                        <span class="cat-label">Coding</span>
+                    </button>
+                    <button class="category-item" data-category="assessment">
+                        <div class="cat-icon"><i class="fa-solid fa-list-check"></i></div>
+                        <span class="cat-label">Assessment</span>
+                    </button>
+                    <button class="category-item" data-category="creating">
+                        <div class="cat-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                        <span class="cat-label">Creating & Documents</span>
+                    </button>
+                    <button class="category-item" data-category="techdev">
+                        <div class="cat-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                        <span class="cat-label">Tech & Dev</span>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN GEMINI CONTAINER -->
+        <main class="main-content">
+
+            <!-- TOP GEMINI HEADER BAR -->
+            <header class="top-bar">
+                <div class="top-left">
+                    <button class="icon-btn mobile-menu-toggle" id="mobileMenuToggle">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    
+                    <!-- FLOATING MODEL SELECTOR PILL -->
+                    <div class="model-selector-container">
+                        <button class="model-pill-btn" id="modelPillBtn">
+                            <span id="headerModelLabel">Gemini 3.6 Flash</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+
+                        <!-- MODEL DROPDOWN MENU -->
+                        <div class="model-dropdown hidden" id="modelDropdown">
+                            <div class="dropdown-header">Model Selection</div>
+                            <div class="model-options-list" id="modelOptionsList">
+                                <!-- Dynamic model options populate here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TOP CENTER BRANDING LOGO & PROTOTYPE BADGE -->
+                <div class="top-center-brand">
+                    <div class="center-brand-logo">
+                        <i class="fa-solid fa-sparkles"></i>
+                    </div>
+                    <div class="center-brand-text">
+                        <span class="center-title">Gemini ChatBot</span>
+                        <span class="prototype-tag">Basic Prototype Build</span>
+                    </div>
+                </div>
+
+                <div class="top-right">
+                    <button class="icon-btn" id="headerClearChatBtn" title="Clear conversation">
+                        <i class="fa-solid fa-rotate-left"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- CHAT VIEW CONTAINER -->
+            <div class="chat-viewport" id="chatViewport">
+                
+                <!-- GREETING HERO SCREEN (Shown when session is empty) -->
+                <div class="greeting-hero" id="greetingHero">
+                    <div class="greeting-header">
+                        <h1 class="greeting-title">Hello, Creator</h1>
+                        <p class="greeting-subtitle">How can I help you today?</p>
+                    </div>
+
+                    <!-- 5 CAPABILITY PROMPT CARDS -->
+                    <div class="capability-cards-grid">
+                        <div class="cap-card" data-prompt="Explain the core principles of machine learning with intuitive real-world analogies.">
+                            <div class="cap-icon cat-pink"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <h3>Learning</h3>
+                            <p>Explain concepts, study guides & summaries</p>
+                        </div>
+
+                        <div class="cap-card" data-prompt="Write a modern Python Flask microservice endpoint for user authentication with JWT.">
+                            <div class="cap-icon cat-beige"><i class="fa-solid fa-code"></i></div>
+                            <h3>Coding</h3>
+                            <p>Write clean code, debug algorithms & refactor</p>
+                        </div>
+
+                        <div class="cap-card" data-prompt="Create a 5-question multiple choice quiz on Web Security best practices with answer explanations.">
+                            <div class="cap-icon cat-pink"><i class="fa-solid fa-list-check"></i></div>
+                            <h3>Assessment</h3>
+                            <p>Quizzes, flashcards & knowledge testing</p>
+                        </div>
+
+                        <div class="cap-card" data-prompt="Draft a creative presentation structure and content outline including slide visuals, PPT structure, PDF document summary, and image concept descriptions for an AI project.">
+                            <div class="cap-icon cat-beige"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                            <h3>Creating</h3>
+                            <p>Draft content, stories, Images, PPT & PDF documents</p>
+                        </div>
+
+                        <div class="cap-card" data-prompt="Design a scalable cloud microservices architecture for high-concurrency chat systems.">
+                            <div class="cap-icon cat-pink"><i class="fa-solid fa-laptop-code"></i></div>
+                            <h3>Tech & Dev</h3>
+                            <p>System architecture, API design & DevOps</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MESSAGES STREAM CONTAINER -->
+                <div class="messages-container" id="messagesContainer"></div>
+
+                <!-- GEMINI TYPING / THINKING INDICATOR -->
+                <div class="gemini-thinking hidden" id="thinkingIndicator">
+                    <div class="sparkle-avatar">
+                        <i class="fa-solid fa-sparkles"></i>
+                    </div>
+                    <div class="thinking-text">
+                        <span>Thinking...</span>
+                        <div class="thinking-bar"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- GEMINI FLOATING BOTTOM INPUT CAPSULE -->
+            <div class="input-container">
+                <div class="input-capsule">
+                    
+                    <!-- + SYMBOL BUTTON (SHORTCUTS & ATTACHMENTS MENU) -->
+                    <button class="plus-btn" id="plusBtn" title="Tools & Attachments (+)">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+
+                    <!-- FLOATING + POPUP ACTION MENU -->
+                    <div class="plus-popup-menu hidden" id="plusPopupMenu">
+                        <div class="menu-title">Shortcuts & Tools</div>
+                        <button class="menu-item" id="popAttachFile">
+                            <i class="fa-solid fa-paperclip"></i>
+                            <span>Upload File / Document (PDF, TXT, Code)</span>
+                        </button>
+                        <button class="menu-item" id="popInsertCode">
+                            <i class="fa-solid fa-code"></i>
+                            <span>Insert Code Template</span>
+                        </button>
+                        <button class="menu-item" id="popClearChat">
+                            <i class="fa-solid fa-broom"></i>
+                            <span>Clear Conversation</span>
+                        </button>
+                    </div>
+
+                    <!-- AUTO-RESIZING TEXTAREA -->
+                    <textarea 
+                        id="chatTextarea" 
+                        placeholder="Ask Gemini..." 
+                        rows="1"
+                    ></textarea>
+
+                    <!-- SEND BUTTON -->
+                    <button class="send-action-btn" id="sendActionBtn" title="Send message">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </button>
+                </div>
+
+                <!-- BOTTOM DISCLAIMER WITH LEARN MORE LINK -->
+                <div class="disclaimer-note">
+                    Gemini may display inaccurate info. <a href="https://support.google.com/gemini/answer/13594961" target="_blank" rel="noopener">Learn more</a>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Hidden file input for uploads (Images, PDF, Text, Code) -->
+    <input type="file" id="hiddenFileInput" accept=".txt,.py,.js,.html,.css,.json,.md,.cpp,.java,.pdf,.ppt,.pptx,.png,.jpg,.jpeg" class="hidden">
+
+    <!-- Dependencies: Marked & Highlight.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <!-- Main JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
