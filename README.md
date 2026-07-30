@@ -16,7 +16,6 @@ A modern, responsive, multi-turn AI chatbot application powered by **Google Gemi
   - 🎨 **Creating**: Draft content, stories, Images, PPT & PDF documents.
   - 🛠️ **Tech & Dev**: Architecture blueprints & API specs.
 - **Floating Input Capsule**: Responsive bottom chat bar with `+` action menu for document/code snippet attachment.
-- **Security First**: API Key stored safely in `.env` (ignored via `.gitignore`).
 
 ---
 
@@ -66,5 +65,5 @@ Open your browser and navigate to **[http://127.0.0.1:5000](http://127.0.0.1:500
 
 ---
 
-## 🔒 Security Notice
-> **Never commit your `.env` file.** The `.gitignore` file ensures `.env` remains local on your computer and is never pushed to public repositories.
+## 👤 Author & Developer
+Built by **[Pavan Reddy](https://github.com/PavanReddy666)**
