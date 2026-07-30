@@ -4,6 +4,12 @@ A modern, responsive, multi-turn AI chatbot application powered by **Google Gemi
 
 ---
 
+## 🌐 Live Demonstration
+Experience the live web application here:  
+👉 **[https://chat-bot-prototype-alpha.vercel.app/](https://chat-bot-prototype-alpha.vercel.app/)**
+
+---
+
 ## 🛠️ Tech Stack & Required Technologies
 
 ### 🎨 Frontend
