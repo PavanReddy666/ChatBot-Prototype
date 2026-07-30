@@ -126,7 +126,16 @@ def chat():
 
     except Exception as e:
         error_str = str(e)
-        # Attempt fallback to gemini-3.6-flash if model-specific API error occurs
+        
+        # Friendly guidance for 401 / Invalid Key errors
+        if "401" in error_str or "UNSUPPORTED" in error_str or "invalid authentication" in error_str.lower():
+            return jsonify({
+                "success": False,
+                "error": "Invalid API Key format. Please get a free Gemini API key (starts with 'AIzaSy...') from https://aistudio.google.com/app/apikey and set GEMINI_API_KEY on Vercel or in your local .env file.",
+                "code": "INVALID_KEY"
+            }), 401
+
+        # Attempt fallback to gemini-3.6-flash if model-specific 404 error occurs
         if "404" in error_str or "not found" in error_str.lower():
             try:
                 fallback_instance = genai.GenerativeModel("gemini-3.6-flash")
