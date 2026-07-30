@@ -4,6 +4,25 @@ A modern, responsive, multi-turn AI chatbot application powered by **Google Gemi
 
 ---
 
+## 🛠️ Tech Stack & Required Technologies
+
+### 🎨 Frontend
+- **HTML5**: Semantic web architecture & template layout.
+- **CSS3**: Custom design system (Warm Beige `#FAF6F0`, Soft Light Pink `#F8D7DA`, Rich Black `#111111` typography).
+- **JavaScript (ES6+)**: SPA logic, model switching state, copy-to-clipboard code blocks, and dynamic UI popovers.
+- **Marked.js**: Markdown parsing for AI responses.
+- **Highlight.js**: Code syntax highlighting.
+- **FontAwesome 6**: Vector UI icons.
+- **Google Fonts**: *Outfit* & *Plus Jakarta Sans*.
+
+### ⚙️ Backend
+- **Python 3**: Server logic & API endpoints.
+- **Flask**: Lightweight Python web framework (`Flask>=3.0.0`).
+- **Google Generative AI SDK**: `google-generativeai` package for multi-turn Gemini API interaction.
+- **Python Dotenv**: `python-dotenv` for secure environment variable isolation.
+
+---
+
 ## ✨ Features
 
 - **Google Gemini Integration**: Supports `Gemini 3.6 Flash`, `Gemini 3.5 Flash`, `Gemini 3.1 Flash Lite`, `Gemini Flash Latest`, and `Gemini 3 Flash Preview`.
