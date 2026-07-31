@@ -137,13 +137,19 @@ textarea, input {
 
 .brand-title {
     font-family: var(--font-heading);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--text-primary);
     display: flex;
     align-items: center;
     gap: 0.4rem;
     white-space: nowrap;
+}
+
+.brand-name-highlight {
+    font-weight: 700;
+    color: #111111;
+    font-family: var(--font-heading);
 }
 
 .brand-title i {
